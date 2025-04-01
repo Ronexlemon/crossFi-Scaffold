@@ -41,8 +41,8 @@ console.log(chalk.blueBright("\n🚀 Welcome to the CrossFid App Scaffold!\n"));
     ]);
 
     const destinationPath = join(process.cwd(), projectName);
-    const frontendPath = join(destinationPath, "frontend");
-    const backendPath = join(destinationPath, "backend");
+    const frontendPath = join(destinationPath, "crossfi-client");
+    const backendPath = join(destinationPath, "crossfi-contracts");
 
     if (existsSync(destinationPath)) {
         console.log(chalk.red("❌ A project with this name already exists! Choose a different name."));
@@ -63,16 +63,17 @@ console.log(chalk.blueBright("\n🚀 Welcome to the CrossFid App Scaffold!\n"));
     };
 
     // Copy frontend and backend templates
+    console.log(chalk.green("\n⚙️ Configuring ...\n"));
     copySync(join(templatePath, frontendMap[frontend]), frontendPath);
     copySync(join(templatePath, backendMap[backend]), backendPath);
 
     console.log(chalk.yellow("\n📥 Installing dependencies for frontend...\n"));
     execSync(`cd ${frontendPath} && npm install`, { stdio: "inherit" });
 
-    console.log(chalk.yellow("\n📥 Installing dependencies for backend...\n"));
+    console.log(chalk.yellow("\n📥 Installing dependencies for backend-contracts...\n"));
     execSync(`cd ${backendPath} && npm install`, { stdio: "inherit" });
 
     console.log(chalk.greenBright("\n✅ Setup complete! Run the following to start:\n"));
-    console.log(chalk.cyan(`  cd ${projectName}/frontend && npm run dev  # Start frontend`));
-    console.log(chalk.cyan(`  cd ${projectName}/backend && npx hardhat test  # Run backend tests\n`));
+    console.log(chalk.cyan(`  cd ${projectName}/crossfi-client && npm run dev  # Start frontend`));
+    console.log(chalk.cyan(`  cd ${projectName}/crossfi-contracts && npx hardhat test  # Run backend tests\n`));
 })();
