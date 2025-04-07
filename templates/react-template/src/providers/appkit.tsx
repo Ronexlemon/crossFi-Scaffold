@@ -4,9 +4,9 @@ import { WagmiProvider } from 'wagmi'
 import { arbitrum, mainnet } from '@reown/appkit/networks'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { crossfi_mainnet } from '../chains/crosffi'
+import { crossfi_mainnet,crossfi_testnet } from '../chains/crosffi'
 
-import { walletClient } from '../chains/client'
+
 
 // async function setupWalletClient() {
 //   await walletClient.addChain({ chain: crossfi_mainnet });
@@ -40,10 +40,11 @@ const wagmiAdapter = new WagmiAdapter({
 // 5. Create modal
 createAppKit({
   adapters: [wagmiAdapter],
-  networks:[crossfi_mainnet],
+  networks:[crossfi_mainnet,crossfi_testnet],
   projectId,
   metadata,
   allowUnsupportedChain:true,
+  enableNetworkSwitch:true,
   features: {
     analytics: true // Optional - defaults to your Cloud configuration
   }
